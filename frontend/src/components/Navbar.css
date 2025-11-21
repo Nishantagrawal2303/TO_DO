@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  color: white;
+  padding: 14px 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+nav h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+nav h1:hover {
+  transform: scale(1.05);
+  color: #e0e7ff;
+}
+
+nav .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+  color: #dbeafe;
+  transform: translateY(-2px);
+}
+
+nav .signup-btn {
+  background-color: white;
+  color: #2563eb;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+nav .signup-btn:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 20px;
+  }
+
+  nav h1 {
+    font-size: 1.5rem;
+  }
+
+  nav .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+}

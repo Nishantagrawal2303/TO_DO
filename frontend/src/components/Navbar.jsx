@@ -11,7 +11,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <h1 onClick={() => navigate("/")}>doctor appointment appp</h1>
+      <h1 onClick={() => navigate("/")}>Notes Management</h1>
       <div className="links">
         {!token ? (
           <>

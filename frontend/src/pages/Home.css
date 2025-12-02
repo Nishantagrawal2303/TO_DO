@@ -1,0 +1,97 @@
+
+.home-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.home-page h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+
+.add-doctor {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.add-doctor input {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.add-doctor input:focus {
+  border-color: #4a90e2;
+}
+
+.add-doctor button {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4a90e2;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add-doctor button:hover {
+  background-color: #3b78c3;
+}
+
+
+ol {
+  padding-left: 20px;
+}
+
+li {
+  background: #f7f7f7;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+li button {
+  margin-left: 10px;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+li button:first-of-type {
+  background: #85ec93;
+  color: #333;
+}
+
+li button:first-of-type:hover {
+  background: #91f0bd;
+}
+
+
+li button:last-of-type {
+  background: #b8b5fa;
+  color: white;
+}
+
+li button:last-of-type:hover {
+  background: #9df8fd;
+}

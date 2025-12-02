@@ -19,9 +19,9 @@ function doctorForm() {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("doctor added successfully!");
+     
     } catch (err) {
-      alert(err.response?.data?.message || "Error adding doctor");
+      alert(err.response?.data?.message || "Error adding task");
     }
   };
 

@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
+import "./Home.css"
 
 function Home() {
-  const [doctors, setdoctors] = useState([]);
+  const [doctors, setDoctors] = useState([]);
   const [name, setName] = useState("");
   const [Time, setTime] = useState("");
 
-  const fetchdoctors = async () => {
+  
+  const [editId, setEditId] = useState(null);
+
+  const fetchDoctors = async () => {
     const res = await API.get("/doctors");
-    setdoctors(res.data);
+    setDoctors(res.data);
   };
 
   useEffect(() => {
-    fetchdoctors();
+    fetchDoctors();
   }, []);
 
   const handleAdd = async () => {
@@ -25,12 +29,44 @@ function Home() {
         { name, Time },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert("patienttt added!");
-      fetchdoctors();
+      alert("Notes added!");
+      setName("");
+      setTime("");
+      fetchDoctors();
     } catch (err) {
-      alert("fill all failed");
+      alert("Fill all fields");
     }
   };
+
+  const handleEdit = (doctor) => {
+    setEditId(doctor._id); 
+    setName(doctor.name);
+    setTime(doctor.Time);
+  };
+
+  const handleUpdate = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) return alert("Please login first");
+
+    try {
+      await API.put(
+        `/doctors/${editId}`,
+        { name, Time },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert("Note Updated!");
+
+     
+      setEditId(null);
+      setName("");
+      setTime("");
+
+      fetchDoctors();
+    } catch (err) {
+      alert("Update failed");
+    }
+  };
+  
 
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
@@ -40,8 +76,8 @@ function Home() {
       await API.delete(`/doctors/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      alert("appoinment cancelledd");
-      fetchdoctors();
+      alert("Note deleted");
+      fetchDoctors();
     } catch (err) {
       alert(err.response?.data?.message || "Delete failed");
     }
@@ -49,29 +85,37 @@ function Home() {
 
   return (
     <div className="home-page">
-      <h2>add new appointments</h2>
+      <h2>{editId ? "Edit Note" : "Add New Note"}</h2>
 
       <div className="add-doctor">
         <input
           type="text"
-          placeholder="patient name"
+          placeholder="Add notes"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
-          type="string"
-          placeholder="TIME"
+          type="text"
+          placeholder="Notes Date"
           value={Time}
           onChange={(e) => setTime(e.target.value)}
         />
-        <button onClick={handleAdd}>Add</button>
+
+        {editId ? (
+          <button onClick={handleUpdate}>Update</button>
+        ) : (
+          <button onClick={handleAdd}>Add</button>
+        )}
       </div>
 
       <ol>
         {doctors.map((p) => (
           <li key={p._id}>
-            {p.name} - {p.Time}    
-            <button onClick={() => handleDelete(p._id)}>cancel Appoinment </button>
+            {p.name} - {p.Time}
+
+            <button onClick={() => handleEdit(p)}>Edit</button>
+
+            <button onClick={() => handleDelete(p._id)}>Delete</button>
           </li>
         ))}
       </ol>
